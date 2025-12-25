@@ -1,0 +1,43 @@
+# Git
+.git
+.gitignore
+
+# Bundler
+.bundle
+vendor/bundle
+
+# Environment variables & secrets
+.env
+.env.*
+config/master.key
+config/credentials/*.key
+
+# Logs & temp
+log/*
+tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# PID files
+tmp/pids/*
+!/tmp/pids/.keep
+
+# Storage (ActiveStorage & SQLite)
+storage/*
+!/storage/.keep
+tmp/storage/*
+!/tmp/storage/.keep
+db/*.sqlite3
+db/*.sqlite3-*
+
+# Node / Assets
+node_modules
+app/assets/builds/*
+!app/assets/builds/.keep
+
+# Editor / Dev tools
+.devcontainer
+.vscode
+
+# OS junk
+.DS_Store

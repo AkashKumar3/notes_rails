@@ -1,0 +1,29 @@
+# Ruby
+*.gem
+.bundle
+vendor/bundle
+
+# Rails
+log/*
+tmp/*
+!log/.keep
+!tmp/.keep
+db/*.sqlite3
+db/*.sqlite3-*
+
+# Secrets
+.env
+.env.*
+config/master.key
+
+# Assets
+app/assets/builds/*
+node_modules/
+
+# Docker
+*.pid
+
+# OS / Editor
+.DS_Store
+.vscode/*
+!.vscode/extensions.json

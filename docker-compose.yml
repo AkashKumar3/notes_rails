@@ -1,0 +1,13 @@
+services:
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - bundle_cache:/usr/local/bundle  # Add this line
+    stdin_open: true
+    tty: true
+
+volumes:
+  bundle_cache:
