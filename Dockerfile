@@ -7,12 +7,10 @@ RUN apt-get update -qq && apt-get install -y \
   sqlite3 \
   libsqlite3-dev \
   build-essential
-  libsqlite3-dev \
-  build-essential
 
 WORKDIR /app
 
-# Install bundler (Rails already comes via Gemfile)
+# Install bundler
 RUN gem install bundler
 
 # Copy Gemfiles first (better caching)
@@ -24,7 +22,7 @@ RUN bundle install
 # Copy the rest of the app
 COPY . .
 
-# Precompile assets (important for production)
+# Production mode
 ENV RAILS_ENV=production
 
 # Expose Railway port
