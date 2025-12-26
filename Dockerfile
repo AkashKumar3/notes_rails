@@ -1,14 +1,15 @@
 FROM ruby:3.3
 
-# Install system dependencies
+# System deps
 RUN apt-get update -qq && apt-get install -y \
   nodejs \
   npm \
   sqlite3 \
   libsqlite3-dev \
   build-essential
+  libsqlite3-dev \
+  build-essential
 
-# Set working directory
 WORKDIR /app
 
 # Install bundler (Rails already comes via Gemfile)
