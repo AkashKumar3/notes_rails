@@ -4,17 +4,23 @@ FROM ruby:3.3
 RUN apt-get update -qq && apt-get install -y \
   nodejs \
   npm \
-  sqlite3 \
+  postgresql-client \
+  build-essential \
+  libpq-dev \
   libsqlite3-dev
 
-# Set working directory
 WORKDIR /app
 
-# Install Rails
-RUN gem install bundler rails
+# Copy Gemfiles and install
+COPY Gemfile* ./
+RUN bundle install
 
-# Expose Rails port
+# Copy the rest of the app
+COPY . .
+
+# Precompile assets
+RUN RAILS_ENV=production rails assets:precompile
+
 EXPOSE 3000
 
-# Start Rails server
 CMD ["rails", "server", "-b", "0.0.0.0"]
