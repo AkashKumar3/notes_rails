@@ -1,10 +1,33 @@
-<% content_for :title, "Editing note" %>
+<% content_for :title, "Edit Note" %>
 
-<div class="md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">Editing note</h1>
+<div class="min-h-screen bg-zinc-50">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12">
 
-  <%= render "form", note: @note %>
+    <!-- Header -->
+    <div class="mb-10">
+      <h1 class="text-4xl font-semibold tracking-tight text-zinc-900">
+        Edit note
+      </h1>
+      <p class="mt-1 text-sm text-zinc-500">
+        Update your thoughts and keep them organized
+      </p>
+    </div>
 
-  <%= link_to "Show this note", @note, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-  <%= link_to "Back to notes", notes_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+    <!-- Form Card -->
+    <div class="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm">
+      <%= render "form", note: @note %>
+
+      <!-- Actions -->
+      <div class="mt-8 flex flex-wrap gap-3">
+        <%= link_to "View note",
+              @note,
+              class: "text-sm font-medium border-2 border-black rounded-md px-4 py-2 hover:-ml-1 hover:-mt-1 hover:border-b-4 hover:border-r-4 transition" %>
+
+        <%= link_to "Back to notes",
+              notes_path,
+              class: "text-sm font-medium border-2 border-black rounded-md px-4 py-2 hover:-ml-1 hover:-mt-1 hover:border-b-4 hover:border-r-4 transition" %>
+      </div>
+    </div>
+
+  </div>
 </div>

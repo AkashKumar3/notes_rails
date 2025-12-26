@@ -46,18 +46,18 @@
             <div class="flex justify-between items-center text-sm">
               <%= link_to "Open",
                     note,
-                    class: "font-medium text-zinc-900 hover:underline" %>
+                    class: "text-sm font-medium border border-2 border-black rounded-md l px-4 py-1 text-black hover:-ml-1 hover:-mt-1 hover:border-b-4 hover:border-r-4" %>
 
               <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition">
                 <%= link_to "Edit",
                       edit_note_path(note),
-                      class: "px-3 py-1 bg-white/20 rounded-md text-white hover:bg-white/30 transition text-sm" %>
+                      class: " text-sm border border-2 border-black rounded-md l px-4 py-1 text-black hover:-ml-1 hover:-mt-1 hover:border-b-4 hover:border-r-4" %>
 
                 <%= button_to "Delete",
                       note,
                       method: :delete,
                       form: { data: { turbo_confirm: "Delete this note?" } },
-                      class: "px-3 py-1 bg-red-500 rounded-md text-white hover:bg-red-600 transition text-sm" %>
+                      class: "text-sm font-medium border border-2 border-black bg-red-500 rounded-md l px-4 py-1 text-black hover:-ml-1 hover:-mt-1 hover:border-b-4 hover:border-r-4" %>
               </div>
             </div>
 

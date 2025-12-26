@@ -28,11 +28,28 @@
           class: "mt-1 block w-full rounded-md border px-3 py-2 shadow-sm focus:ring-2 focus:ring-blue-500 #{note.errors[:description].any? ? 'border-red-400' : 'border-gray-300'}" %>
   </div>
 
-  <%# Color %>
+  <%# Color Picker %>
   <div class="mb-5">
-    <%= form.label :color, class: "block text-sm font-medium text-gray-700" %>
-    <%= form.text_field :color,
-          class: "mt-1 block w-full rounded-md border px-3 py-2 shadow-sm focus:ring-2 focus:ring-blue-500 #{note.errors[:color].any? ? 'border-red-400' : 'border-gray-300'}" %>
+    <%= form.label :color, "Pick a color", class: "block text-sm font-medium text-gray-700 mb-2" %>
+    <div class="flex gap-3 flex-wrap">
+      <% colors = {
+          "Light Blue" => "#dbeafe",
+          "Light Green" => "#dcfce7",
+          "Light Yellow" => "#fef9c3",
+          "Light Pink" => "#fee2e2",
+          "Light Purple" => "#ede9fe",
+          "White" => "#ffffff"
+        } %>
+
+      <% colors.each do |name, hex| %>
+        <label class="cursor-pointer">
+          <%= form.radio_button :color, hex, checked: note.color == hex, class: "hidden" %>
+          <span class="block w-10 h-10 rounded-lg border border-gray-300 hover:ring-2 hover:ring-offset-1 hover:ring-blue-400 transition"
+                style="background-color: <%= hex %>; <%='ring-2 ring-blue-500' if note.color == hex %>">
+          </span>
+        </label>
+      <% end %>
+    </div>
   </div>
 
   <div class="mb-5">
@@ -41,10 +58,11 @@
           class: "mt-1 block w-full rounded-md border px-3 py-2 bg-gray-100 text-gray-500 #{note.errors[:user_id].any? ? 'border-red-400' : 'border-gray-300'}" %>
   </div>
 
+
   <%# Submit button %>
   <div>
     <%= form.submit "Save Note",
-          class: "w-full sm:w-auto rounded-md px-4 py-2.5 bg-blue-600 text-white font-medium hover:bg-blue-500 transition cursor-pointer" %>
+          class: "text-l font-medium border border-2 border-black rounded-md l px-6 py-2 text-black hover:-ml-1 hover:-mt-1 hover:border-b-4 hover:border-r-4" %>
   </div>
 
 <% end %>

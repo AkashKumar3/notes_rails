@@ -4,8 +4,15 @@
         <h1 class=" text-5xl font-bold leading-7 text-black sm:text-6xl md:tracking-tight">Notes</h1>
         <h1 class="mt-6 text-medium font-medium   leading-7 text-black md:text-2xl sm:tracking-tight">Effortlessly organise your notes </h1>
 
-         <%= link_to "Let's Start", new_user_registration_path, class:"mt-8 text-xl font-medium border border-2 border-black rounded-md l px-6 py-2 text-black hover:-ml-1 hover:mt-7 hover:border-b-4 hover:border-r-4" %>
-       
+        <% if user_signed_in? %>
+        <%= link_to "Let's Start",
+              notes_path,
+              class: "mt-8 text-xl font-medium border-2 border-black rounded-md px-6 py-2 text-black hover:-ml-1 hover:mt-7 hover:border-b-4 hover:border-r-4 transition" %>
+      <% else %>
+        <%= link_to "Let's Start",
+              new_user_registration_path,
+              class: "mt-8 text-xl font-medium border-2 border-black rounded-md px-6 py-2 text-black hover:-ml-1 hover:mt-7 hover:border-b-4 hover:border-r-4 transition" %>
+      <% end %>
     </div>
     <div>
        <%= image_tag 'notes_graphic.png', class:'w-80 py-0 -ml-4 md:ml-0  md:py-16 md:w-full mx-auto' %>
