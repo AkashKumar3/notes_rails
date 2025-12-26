@@ -1,26 +1,27 @@
 FROM ruby:3.3
 
-# Install system dependencies
+# System deps
 RUN apt-get update -qq && apt-get install -y \
   nodejs \
   npm \
-  postgresql-client \
-  build-essential \
-  libpq-dev \
-  libsqlite3-dev
+  sqlite3 \
+  libsqlite3-dev \
+  build-essential
 
 WORKDIR /app
 
-# Copy Gemfiles and install
-COPY Gemfile* ./
+# Install bundler
+RUN gem install bundler
+
+# Copy gems
+COPY Gemfile Gemfile.lock ./
 RUN bundle install
 
-# Copy the rest of the app
+# Copy app
 COPY . .
 
-# Precompile assets
-RUN RAILS_ENV=production rails assets:precompile
-
+# Expose port
 EXPOSE 3000
 
-CMD ["rails", "server", "-b", "0.0.0.0"]
+# Start server (Railway injects env vars at runtime)
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "${PORT:-3000}"]
