@@ -1,9 +1,26 @@
 <% content_for :title, "New note" %>
 
-<div class="md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">New note</h1>
+<div class="min-h-screen bg-zinc-50 flex justify-center items-start py-12 px-4 sm:px-6 lg:px-8">
 
-  <%= render "form", note: @note %>
+  <div class="w-full md:w-2/3 bg-white rounded-xl shadow-md p-8">
 
-  <%= link_to "Back to notes", notes_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+    <!-- Header -->
+    <h1 class="text-4xl font-bold text-zinc-900 mb-6">
+      Create New Note
+    </h1>
+    <p class="text-zinc-500 mb-8">
+      Add your thoughts, reminders, or todos below. Make it colorful and organized.
+    </p>
+
+    <!-- Form -->
+    <%= render "form", note: @note %>
+
+    <!-- Back Link -->
+    <div class="mt-6">
+      <%= link_to "Back to notes",
+            notes_path,
+            class: "inline-block text-sm font-medium text-zinc-900 border border-zinc-300 rounded-md px-4 py-2 hover:bg-zinc-100 transition" %>
+    </div>
+
+  </div>
 </div>

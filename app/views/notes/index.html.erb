@@ -1,29 +1,92 @@
 <% content_for :title, "Notes" %>
 
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
-  <% end %>
+<div class="min-h-screen bg-zinc-50">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Notes</h1>
-    <%= link_to "New note", new_note_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
-  </div>
-
-  <div id="notes" class="min-w-full divide-y divide-gray-200 space-y-5">
-    <% if @notes.any? %>
-      <% @notes.each do |note| %>
-        <div class="flex flex-col sm:flex-row justify-between items-center pb-5 sm:pb-0">
-          <%= render note %>
-          <div class="w-full sm:w-auto flex flex-col sm:flex-row space-x-2 space-y-2">
-            <%= link_to "Show", note, class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <%= link_to "Edit", edit_note_path(note), class: "w-full sm:w-auto text-center rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-            <%= button_to "Destroy", note, method: :delete, class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
-          </div>
-        </div>
-      <% end %>
-    <% else %>
-      <p class="text-center my-10">No notes found.</p>
+    <!-- Flash -->
+    <% if notice.present? %>
+      <div class="mb-6 rounded-lg bg-emerald-100/70 px-4 py-3 text-emerald-800 text-sm font-medium">
+        <%= notice %>
+      </div>
     <% end %>
+
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-10">
+      <div>
+        <h1 class="text-4xl font-semibold tracking-tight text-zinc-900">
+          Notes
+        </h1>
+        <p class="mt-1 text-sm text-zinc-500">
+          All your thoughts, organized in one place
+        </p>
+      </div>
+
+      <%= link_to "New note",
+            new_note_path,
+            class: "inline-flex items-center gap-2 rounded-lg bg-zinc-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-zinc-400 transition" %>
+    </div>
+
+    <!-- Notes Grid -->
+    <% if @notes.any? %>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <% @notes.each do |note| %>
+          <div class="group relative rounded-xl border border-zinc-200 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between"
+               style="background-color: <%= note.color.presence || '#ffffff' %>;">
+            
+            <!-- Note Content -->
+            <div class="space-y-2 text-zinc-900">
+              <%= render note %>
+            </div>
+
+            <!-- Divider -->
+            <div class="my-4 h-px bg-zinc-100"></div>
+
+            <!-- Actions -->
+            <div class="flex justify-between items-center text-sm">
+              <%= link_to "Open",
+                    note,
+                    class: "font-medium text-zinc-900 hover:underline" %>
+
+              <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition">
+                <%= link_to "Edit",
+                      edit_note_path(note),
+                      class: "px-3 py-1 bg-white/20 rounded-md text-white hover:bg-white/30 transition text-sm" %>
+
+                <%= button_to "Delete",
+                      note,
+                      method: :delete,
+                      form: { data: { turbo_confirm: "Delete this note?" } },
+                      class: "px-3 py-1 bg-red-500 rounded-md text-white hover:bg-red-600 transition text-sm" %>
+              </div>
+            </div>
+
+          </div>
+        <% end %>
+
+      </div>
+    <% else %>
+
+      <!-- Empty State -->
+      <div class="flex flex-col items-center justify-center py-32 text-center">
+        <div class="rounded-full bg-zinc-200 p-6 text-2xl">
+          📝
+        </div>
+
+        <h2 class="mt-6 text-2xl font-semibold text-zinc-900">
+          No notes yet
+        </h2>
+
+        <p class="mt-2 text-zinc-500 max-w-sm">
+          Capture ideas, reminders, and todos. Your notes will appear here.
+        </p>
+
+        <%= link_to "Create your first note",
+              new_note_path,
+              class: "mt-6 inline-flex items-center gap-2 rounded-lg bg-zinc-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-zinc-800 transition" %>
+      </div>
+
+    <% end %>
+
   </div>
 </div>

@@ -1,18 +1,18 @@
-<div id="<%= dom_id note %>" class="w-full sm:w-auto my-5 space-y-5">
-  <div>
-    <strong class="block font-medium mb-1">Title:</strong>
+<div id="<%= dom_id note %>" class="w-full sm:w-auto my-5 rounded-xl shadow-md p-5 transition transform hover:scale-105" style="background-color: <%= note.color.presence || '#f9fafb' %>;">
+  
+  <!-- Title -->
+  <h2 class="text-xl font-semibold text-zinc-900 mb-2">
     <%= note.title %>
-  </div>
-  <div>
-    <strong class="block font-medium mb-1">Description:</strong>
+  </h2>
+
+  <!-- Description -->
+  <p class="text-zinc-700">
     <%= note.description %>
-  </div>
-  <div>
-    <strong class="block font-medium mb-1">Color:</strong>
-    <%= note.color %>
-  </div>
-  <div>
-    <strong class="block font-medium mb-1">User:</strong>
-    <%= note.user_id %>
-  </div>
+  </p>
+
+  <!-- User Info -->
+  <p class="mt-3 text-sm text-zinc-500">
+    Created by User ID: <%= note.user_id %>
+  </p>
+
 </div>
