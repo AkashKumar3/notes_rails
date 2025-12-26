@@ -5,16 +5,30 @@ RUN apt-get update -qq && apt-get install -y \
   nodejs \
   npm \
   sqlite3 \
-  libsqlite3-dev
+  libsqlite3-dev \
+  build-essential
 
 # Set working directory
 WORKDIR /app
 
-# Install Rails
-RUN gem install bundler rails
+# Install bundler (Rails already comes via Gemfile)
+RUN gem install bundler
 
-# Expose Rails port
+# Copy Gemfiles first (better caching)
+COPY Gemfile Gemfile.lock ./
+
+# Install gems
+RUN bundle install
+
+# Copy the rest of the app
+COPY . .
+
+# Precompile assets (important for production)
+ENV RAILS_ENV=production
+RUN bundle exec rails assets:precompile
+
+# Expose Railway port
 EXPOSE 3000
 
 # Start Rails server
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["sh", "-c", "bundle exec rails server -b 0.0.0.0 -p ${PORT:-3000}"]
