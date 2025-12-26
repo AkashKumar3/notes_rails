@@ -26,7 +26,6 @@ COPY . .
 
 # Precompile assets (important for production)
 ENV RAILS_ENV=production
-RUN bundle exec rails assets:precompile
 
 # Expose Railway port
 EXPOSE 3000
