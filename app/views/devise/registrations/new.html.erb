@@ -1,0 +1,82 @@
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+  <div class="grid grid-cols-1 md:grid-cols-2 min-h-[80vh]">
+
+    <!-- LEFT -->
+    <div class="flex flex-col justify-center">
+      <div class="w-full max-w-md">
+
+        <h1 class="text-5xl font-bold text-black tracking-tight">
+          Create account
+        </h1>
+
+        <p class="mt-4 text-xl font-medium text-black/80">
+          Start organizing your notes effortlessly
+        </p>
+
+        <div class="mt-10">
+          <%= form_for(resource,
+                as: resource_name,
+                url: registration_path(resource_name),
+                html: { class: "space-y-6" }) do |f| %>
+
+            <%= render "devise/shared/error_messages", resource: resource %>
+
+            <!-- Email -->
+            <div class="space-y-1">
+              <%= f.label :email, class: "block text-sm font-medium text-black" %>
+              <%= f.email_field :email,
+                    autofocus: true,
+                    autocomplete: "email",
+                    class: "block w-full rounded-md border-2 border-black px-4 py-3 text-base focus:outline-none" %>
+            </div>
+
+            <!-- Password -->
+            <div class="space-y-1">
+              <%= f.label :password, class: "block text-sm font-medium text-black" %>
+              <% if @minimum_password_length %>
+                <p class="text-xs text-black/60">
+                  Minimum <%= @minimum_password_length %> characters
+                </p>
+              <% end %>
+              <%= f.password_field :password,
+                    autocomplete: "new-password",
+                    class: "block w-full rounded-md border-2 border-black px-4 py-3 text-base focus:outline-none" %>
+            </div>
+
+            <!-- Password Confirmation -->
+            <div class="space-y-1">
+              <%= f.label :password_confirmation, class: "block text-sm font-medium text-black" %>
+              <%= f.password_field :password_confirmation,
+                    autocomplete: "new-password",
+                    class: "block w-full rounded-md border-2 border-black px-4 py-3 text-base focus:outline-none" %>
+            </div>
+
+            <!-- Submit -->
+            <div>
+              <%= f.submit "Sign up",
+                    class: "mt-4 inline-block text-xl font-medium border-2 border-black rounded-md px-6 py-2 text-black hover:-ml-1 hover:-mt-1 hover:border-b-4 hover:border-r-4 transition-all" %>
+            </div>
+
+          <% end %>
+
+
+    <% if resource.errors.full_messages.any? { |m| m.include?("Email has already been taken") } %>
+      <div class="mt-6">
+        <%= link_to "Already have an account? Login",
+        new_user_session_path,
+        class: "inline-block text-lg font-medium border-2 border-black rounded-md px-6 py-2 text-black hover:-ml-1 hover:-mt-1 hover:border-b-4 hover:border-r-4 transition-all" %>
+      </div>
+    <% end %>
+
+
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT IMAGE -->
+    <div class="hidden md:flex items-center justify-center">
+      <%= image_tag "notes_graphic.png", class: "max-w-md w-full" %>
+    </div>
+
+  </div>
+</div>

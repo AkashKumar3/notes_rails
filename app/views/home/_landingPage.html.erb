@@ -3,9 +3,9 @@
     <div class="flex flex-col place-content-center items-center md:items-start py-16">
         <h1 class=" text-5xl font-bold leading-7 text-black sm:text-6xl md:tracking-tight">Notes</h1>
         <h1 class="mt-6 text-medium font-medium   leading-7 text-black md:text-2xl sm:tracking-tight">Effortlessly organise your notes </h1>
-        <button class="mt-8 font-medium border border-2 border-black rounded-md l px-6 py-2 text-black hover:-ml-1 hover:mt-7 hover:border-b-4 hover:border-r-4">
-            Let's Start
-        </button>
+
+         <%= link_to "Let's Start", new_user_registration_path, class:"mt-8 text-xl font-medium border border-2 border-black rounded-md l px-6 py-2 text-black hover:-ml-1 hover:mt-7 hover:border-b-4 hover:border-r-4" %>
+       
     </div>
     <div>
        <%= image_tag 'notes_graphic.png', class:'w-80 py-0 -ml-4 md:ml-0  md:py-16 md:w-full mx-auto' %>

@@ -25,8 +25,13 @@
 
   <body>
     <main>
-     <%= render "layouts/header" %>
-      <%= yield %>
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+       <%= controller_name %>
+       <% if controller_name != 'registrations' && controller_name != 'sessions'&& controller_name != 'passwords' %> 
+        <%= render "layouts/header" %>
+       <% end %>
+       <%= yield %>
     </main>
   </body>
 </html>
